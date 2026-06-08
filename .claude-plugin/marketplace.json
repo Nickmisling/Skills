@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "skills",
+  "description": "A collection of Agent Skills packaged as installable Claude Code plugins.",
+  "owner": {
+    "name": "Nickmisling",
+    "email": "nickolasmisling@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "example-skill",
+      "source": "./plugins/example-skill",
+      "description": "Starter example skill plugin. Copy this directory to create your own.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "examples",
+      "keywords": ["example", "template", "skill"]
+    }
+  ]
+}
