@@ -33,6 +33,7 @@ claude plugin install example-skill@skills
 
 | Plugin          | Description                                                  |
 | --------------- | ----------------------------------------------------------- |
+| `hello-world`   | A very basic hello world skill.                             |
 | `example-skill` | Starter example skill. Copy it as a template for your own.   |
 
 ## Repository layout
