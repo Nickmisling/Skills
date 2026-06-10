@@ -1,0 +1,9 @@
+{
+  "name": "search-skills",
+  "description": "Search for existing Agent Skills across public skill repositories and marketplaces.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

@@ -5,8 +5,11 @@ focused on testing, scaffolding, and authoring other Agent Skills. This
 repository is a **plugin marketplace**: add it once and install any skill it
 hosts.
 
-> No skills are published yet. The marketplace is set up and ready — add your
-> first skill following the steps below.
+## What's inside
+
+| Plugin          | Category  | Description                                                            |
+| --------------- | --------- | ---------------------------------------------------------------------- |
+| `search-skills` | discovery | Search for existing Agent Skills across public repos and marketplaces. |
 
 ## Add the marketplace
 
@@ -14,10 +17,10 @@ hosts.
 /plugin marketplace add Nickmisling/Skills
 ```
 
-Then install a plugin from it (once skills exist):
+Then install a plugin from it:
 
 ```shell
-/plugin install <plugin-name>@skills
+/plugin install search-skills@skills
 ```
 
 To pull in new or updated plugins later:
