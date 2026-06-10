@@ -5,16 +5,19 @@ focused on testing, scaffolding, and authoring other Agent Skills. This
 repository is a **plugin marketplace**: add it once and install any skill it
 hosts.
 
+> No skills are published yet. The marketplace is set up and ready — add your
+> first skill following the steps below.
+
 ## Add the marketplace
 
 ```shell
 /plugin marketplace add Nickmisling/Skills
 ```
 
-Then install a plugin from it:
+Then install a plugin from it (once skills exist):
 
 ```shell
-/plugin install create-skill@skills
+/plugin install <plugin-name>@skills
 ```
 
 To pull in new or updated plugins later:
@@ -27,16 +30,7 @@ You can also add it non-interactively from your terminal:
 
 ```bash
 claude plugin marketplace add Nickmisling/Skills
-claude plugin install create-skill@skills
 ```
-
-## What's inside
-
-| Plugin            | Category  | Description                                                       |
-| ----------------- | --------- | ----------------------------------------------------------------- |
-| `create-skill`    | authoring | Scaffold a new skill plugin and register it in the marketplace.   |
-| `validate-skills` | testing   | Validate the marketplace catalog and every plugin manifest.       |
-| `hello-world`     | testing   | Minimal skill for smoke-testing that install and invocation work. |
 
 ## Repository layout
 
@@ -55,17 +49,13 @@ claude plugin install create-skill@skills
 
 ## Add a new skill
 
-The fastest way is to install and use the `create-skill` plugin, which
-scaffolds and registers a new skill for you. To do it by hand:
-
 1. Create `plugins/<name>/.claude-plugin/plugin.json` with `name`,
    `description`, and `version`.
 2. Create `plugins/<name>/skills/<name>/SKILL.md` with YAML frontmatter
    (`name`, `description`) and step-by-step instructions.
 3. Add a matching entry to the `plugins` array in
    `.claude-plugin/marketplace.json` (`name`, `source`, `description`).
-4. Add a row to the table above.
-5. Validate:
+4. Validate:
 
    ```bash
    claude plugin validate .

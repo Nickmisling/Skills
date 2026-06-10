@@ -1,9 +1,0 @@
-{
-  "name": "validate-skills",
-  "description": "Validate the marketplace catalog and every plugin manifest.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Nickmisling"
-  },
-  "license": "MIT"
-}

@@ -1,9 +1,0 @@
-{
-  "name": "hello-world",
-  "description": "A very basic hello world skill.",
-  "version": "0.1.0",
-  "author": {
-    "name": "Nickmisling"
-  },
-  "license": "MIT"
-}
