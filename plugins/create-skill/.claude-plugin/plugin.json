@@ -1,0 +1,9 @@
+{
+  "name": "create-skill",
+  "description": "Scaffold a new skill plugin in this marketplace and register it.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

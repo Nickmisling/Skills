@@ -1,35 +1,47 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "skills",
-  "description": "A collection of Agent Skills packaged as installable Claude Code plugins.",
+  "description": "Utility skills for Claude Code — focused on testing, scaffolding, and authoring other Agent Skills.",
   "owner": {
     "name": "Nickmisling",
     "email": "nickolasmisling@gmail.com"
   },
   "plugins": [
     {
-      "name": "hello-world",
-      "source": "./plugins/hello-world",
-      "description": "A very basic hello world skill.",
+      "name": "create-skill",
+      "source": "./plugins/create-skill",
+      "description": "Scaffold a new skill plugin in this marketplace and register it.",
       "version": "0.1.0",
       "author": {
         "name": "Nickmisling"
       },
       "license": "MIT",
-      "category": "examples",
-      "keywords": ["hello", "example", "greeting"]
+      "category": "authoring",
+      "keywords": ["skill", "scaffold", "generator", "authoring", "utility"]
     },
     {
-      "name": "example-skill",
-      "source": "./plugins/example-skill",
-      "description": "Starter example skill plugin. Copy this directory to create your own.",
+      "name": "validate-skills",
+      "source": "./plugins/validate-skills",
+      "description": "Validate the marketplace catalog and every plugin manifest.",
       "version": "0.1.0",
       "author": {
         "name": "Nickmisling"
       },
       "license": "MIT",
-      "category": "examples",
-      "keywords": ["example", "template", "skill"]
+      "category": "testing",
+      "keywords": ["skill", "validate", "lint", "testing", "utility"]
+    },
+    {
+      "name": "hello-world",
+      "source": "./plugins/hello-world",
+      "description": "A minimal skill for smoke-testing that install and invocation work.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "testing",
+      "keywords": ["hello", "example", "smoke-test", "testing"]
     }
   ]
 }

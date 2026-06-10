@@ -1,8 +1,9 @@
 # Skills
 
-A collection of Agent Skills packaged as installable [Claude Code](https://code.claude.com/docs)
-plugins. This repository is a **plugin marketplace** — add it once and install
-any skill it hosts.
+A collection of **utility skills** for [Claude Code](https://code.claude.com/docs) —
+focused on testing, scaffolding, and authoring other Agent Skills. This
+repository is a **plugin marketplace**: add it once and install any skill it
+hosts.
 
 ## Add the marketplace
 
@@ -13,7 +14,7 @@ any skill it hosts.
 Then install a plugin from it:
 
 ```shell
-/plugin install example-skill@skills
+/plugin install create-skill@skills
 ```
 
 To pull in new or updated plugins later:
@@ -26,15 +27,16 @@ You can also add it non-interactively from your terminal:
 
 ```bash
 claude plugin marketplace add Nickmisling/Skills
-claude plugin install example-skill@skills
+claude plugin install create-skill@skills
 ```
 
 ## What's inside
 
-| Plugin          | Description                                                  |
-| --------------- | ----------------------------------------------------------- |
-| `hello-world`   | A very basic hello world skill.                             |
-| `example-skill` | Starter example skill. Copy it as a template for your own.   |
+| Plugin            | Category  | Description                                                       |
+| ----------------- | --------- | ----------------------------------------------------------------- |
+| `create-skill`    | authoring | Scaffold a new skill plugin and register it in the marketplace.   |
+| `validate-skills` | testing   | Validate the marketplace catalog and every plugin manifest.       |
+| `hello-world`     | testing   | Minimal skill for smoke-testing that install and invocation work. |
 
 ## Repository layout
 
@@ -43,23 +45,27 @@ claude plugin install example-skill@skills
 ├── .claude-plugin/
 │   └── marketplace.json          # marketplace catalog (lists every plugin)
 └── plugins/
-    └── example-skill/            # one plugin per directory
+    └── <plugin-name>/            # one plugin per directory
         ├── .claude-plugin/
         │   └── plugin.json       # plugin manifest
         └── skills/
-            └── example-skill/
+            └── <skill-name>/
                 └── SKILL.md      # the skill itself
 ```
 
 ## Add a new skill
 
-1. Copy `plugins/example-skill` to `plugins/<your-plugin-name>`.
-2. Rename the inner `skills/example-skill` directory and edit its `SKILL.md`.
-3. Update `name`, `description`, and `version` in the plugin's
-   `.claude-plugin/plugin.json`.
-4. Add a matching entry to the `plugins` array in
+The fastest way is to install and use the `create-skill` plugin, which
+scaffolds and registers a new skill for you. To do it by hand:
+
+1. Create `plugins/<name>/.claude-plugin/plugin.json` with `name`,
+   `description`, and `version`.
+2. Create `plugins/<name>/skills/<name>/SKILL.md` with YAML frontmatter
+   (`name`, `description`) and step-by-step instructions.
+3. Add a matching entry to the `plugins` array in
    `.claude-plugin/marketplace.json` (`name`, `source`, `description`).
-5. Validate and commit:
+4. Add a row to the table above.
+5. Validate:
 
    ```bash
    claude plugin validate .
