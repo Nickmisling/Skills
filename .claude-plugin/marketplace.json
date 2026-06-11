@@ -8,6 +8,18 @@
   },
   "plugins": [
     {
+      "name": "hello-world",
+      "source": "./plugins/hello-world",
+      "description": "Runs a bash shell script that echoes Hello World.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "examples",
+      "keywords": ["bash", "hello-world", "shell", "script"]
+    },
+    {
       "name": "example-skill",
       "source": "./plugins/example-skill",
       "description": "Starter example skill plugin. Copy this directory to create your own.",
