@@ -1,0 +1,9 @@
+{
+  "name": "session-search",
+  "description": "Find past Claude Code sessions across all projects by keyword and date, list projects, and extract any session as readable Markdown or JSON.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

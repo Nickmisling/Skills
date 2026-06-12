@@ -1,0 +1,7 @@
+{
+  "name": "session-size-guard",
+  "description": "Finds oversized or runaway Claude Code session files before they hang the CLI, shows what is bloating them (progress entries, tool results, attachments), and recommends fixes.",
+  "version": "0.1.0",
+  "author": { "name": "Nickmisling" },
+  "license": "MIT"
+}

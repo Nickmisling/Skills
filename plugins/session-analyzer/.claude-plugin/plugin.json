@@ -1,0 +1,9 @@
+{
+  "name": "session-analyzer",
+  "description": "Statistical analysis of Claude Code session transcripts: token usage, tool-call distribution, cache-hit ratio, expensive turns, branch points, and compaction events.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

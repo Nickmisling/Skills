@@ -1,0 +1,9 @@
+{
+  "name": "sandbox-env-report",
+  "description": "Collect a secrets-masked diagnostic snapshot of a Claude Code sandbox/remote environment: env vars, system info, tool versions, network reachability, and the claude.ai session URL.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

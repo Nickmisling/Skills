@@ -1,0 +1,7 @@
+{
+  "name": "history-doctor",
+  "description": "Inspects and repairs Claude Code's prompt history (history.jsonl) and the projects map in ~/.claude.json: malformed lines, stale entries for deleted projects. Safe, backup-first fixes.",
+  "version": "0.1.0",
+  "author": { "name": "Nickmisling" },
+  "license": "MIT"
+}
