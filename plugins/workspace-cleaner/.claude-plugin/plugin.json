@@ -1,0 +1,9 @@
+{
+  "name": "workspace-cleaner",
+  "description": "Audit and safely reclaim disk space in ~/.claude: stale transcripts, debug logs, orphaned session artifacts, and legacy directories — dry-run first, opt-in per category.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

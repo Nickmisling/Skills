@@ -1,0 +1,9 @@
+{
+  "name": "session-collector",
+  "description": "Bundle a Claude Code session (transcript, subagents, tool results, file history) into a portable tar.gz archive with optional secret redaction.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "session-format-reference",
+  "description": "Authoritative reference for the Claude Code session JSONL transcript format and the ~/.claude directory layout, for building session tooling.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nickmisling"
+  },
+  "license": "MIT"
+}

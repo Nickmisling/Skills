@@ -42,6 +42,126 @@
       "license": "MIT",
       "category": "examples",
       "keywords": ["blank", "template", "skill"]
+    },
+    {
+      "name": "session-doctor",
+      "source": "./plugins/session-doctor",
+      "description": "Read-only diagnosis of Claude Code session and resume problems: JSONL corruption, broken parent chains, orphaned session dirs, oversized transcripts.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "diagnosis", "jsonl", "resume", "transcript"]
+    },
+    {
+      "name": "session-repair",
+      "source": "./plugins/session-repair",
+      "description": "Repairs damaged Claude Code session JSONL files so they can be resumed: drops corrupt lines, fixes empty content blocks, strips progress bloat, re-stitches parent chains. Always backs up first.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "repair", "jsonl", "corruption", "resume"]
+    },
+    {
+      "name": "session-size-guard",
+      "source": "./plugins/session-size-guard",
+      "description": "Finds oversized or runaway Claude Code session files before they hang the CLI, shows what is bloating them (progress entries, tool results, attachments), and recommends fixes.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "size", "bloat", "performance", "audit"]
+    },
+    {
+      "name": "history-doctor",
+      "source": "./plugins/history-doctor",
+      "description": "Inspects and repairs Claude Code's prompt history (history.jsonl) and the projects map in ~/.claude.json: malformed lines, stale entries for deleted projects. Safe, backup-first fixes.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["history", "repair", "prompt-history", "projects", "cleanup"]
+    },
+    {
+      "name": "session-collector",
+      "source": "./plugins/session-collector",
+      "description": "Bundle a Claude Code session (transcript, subagents, tool results, file history) into a portable tar.gz archive with optional secret redaction.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "archive", "export", "backup", "redaction"]
+    },
+    {
+      "name": "session-analyzer",
+      "source": "./plugins/session-analyzer",
+      "description": "Statistical analysis of Claude Code session transcripts: token usage, tool-call distribution, cache-hit ratio, expensive turns, branch points, and compaction events.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "analysis", "tokens", "stats", "cost"]
+    },
+    {
+      "name": "session-search",
+      "source": "./plugins/session-search",
+      "description": "Find past Claude Code sessions across all projects by keyword and date, list projects, and extract any session as readable Markdown or JSON.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["session", "search", "history", "extract", "transcript"]
+    },
+    {
+      "name": "workspace-cleaner",
+      "source": "./plugins/workspace-cleaner",
+      "description": "Audit and safely reclaim disk space in ~/.claude: stale transcripts, debug logs, orphaned session artifacts, and legacy directories — dry-run first, opt-in per category.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["cleanup", "disk-space", "workspace", "transcripts", "audit"]
+    },
+    {
+      "name": "sandbox-env-report",
+      "source": "./plugins/sandbox-env-report",
+      "description": "Collect a secrets-masked diagnostic snapshot of a Claude Code sandbox/remote environment: env vars, system info, tool versions, network reachability, and the claude.ai session URL.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "diagnostics",
+      "keywords": ["sandbox", "environment", "diagnostics", "network", "report"]
+    },
+    {
+      "name": "session-format-reference",
+      "source": "./plugins/session-format-reference",
+      "description": "Authoritative reference for the Claude Code session JSONL transcript format and the ~/.claude directory layout, for building session tooling.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "session-tools",
+      "keywords": ["reference", "jsonl", "session-format", "documentation", "tooling"]
     }
   ]
 }

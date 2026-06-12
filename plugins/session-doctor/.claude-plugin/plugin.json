@@ -1,0 +1,7 @@
+{
+  "name": "session-doctor",
+  "description": "Read-only diagnosis of Claude Code session and resume problems: JSONL corruption, broken parent chains, orphaned session dirs, oversized transcripts.",
+  "version": "0.1.0",
+  "author": { "name": "Nickmisling" },
+  "license": "MIT"
+}

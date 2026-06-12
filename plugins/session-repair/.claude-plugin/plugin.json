@@ -1,0 +1,7 @@
+{
+  "name": "session-repair",
+  "description": "Repairs damaged Claude Code session JSONL files so they can be resumed: drops corrupt lines, fixes empty content blocks, strips progress bloat, re-stitches parent chains. Always backs up first.",
+  "version": "0.1.0",
+  "author": { "name": "Nickmisling" },
+  "license": "MIT"
+}
