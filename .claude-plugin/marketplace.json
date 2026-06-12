@@ -30,6 +30,18 @@
       "license": "MIT",
       "category": "examples",
       "keywords": ["example", "template", "skill"]
+    },
+    {
+      "name": "blank-skill",
+      "source": "./plugins/blank-skill",
+      "description": "Blank skill plugin with empty placeholder files. Copy this directory and fill it in.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nickmisling"
+      },
+      "license": "MIT",
+      "category": "examples",
+      "keywords": ["blank", "template", "skill"]
     }
   ]
 }
