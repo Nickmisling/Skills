@@ -10,7 +10,7 @@ A Claude Code **plugin marketplace** hosting Agent Skills as installable plugins
 
 1. Copy `plugins/example-skill` to `plugins/<your-plugin-name>`.
 2. Rename `plugins/<your-plugin-name>/skills/example-skill` to match and edit its `SKILL.md`.
-3. Update `name`, `description`, and `version` in `plugins/<your-plugin-name>/.claude-plugin/plugin.json`.
+3. Update `name`, `description`, and `version` in `plugins/<your-plugin-name>/.claude-plugin/plugin.json`. (Do not add `category` or `keywords` here — they belong only in `marketplace.json` and are ignored in `plugin.json`.)
 4. Add a matching entry to `.claude-plugin/marketplace.json` (fields: `name`, `source`, `description`, `version`, `author`, `license`, `category`, `keywords`).
 5. Update the plugin table in `README.md`.
 6. Validate: `claude plugin validate .`

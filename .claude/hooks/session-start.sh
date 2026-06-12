@@ -8,5 +8,5 @@ fi
 
 # Validate marketplace structure at session start to catch issues early
 if command -v claude &>/dev/null; then
-  claude plugin validate . 2>&1 || true
+  claude plugin validate . || echo "Warning: plugin validation failed" >&2
 fi

@@ -5,7 +5,5 @@
   "author": {
     "name": "Nickmisling"
   },
-  "license": "MIT",
-  "category": "examples",
-  "keywords": ["bash", "hello-world", "shell", "script"]
+  "license": "MIT"
 }
