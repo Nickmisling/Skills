@@ -43,12 +43,14 @@ If the project defines its own agents (`.claude/agents/*.md`), prefer a matching
 | `debugger` | Root cause of a bug is unclear | `general-purpose` | `sonnet` |
 | `devils-advocate` | A conclusion or plan needs stress-testing before acting on it | `general-purpose` | `opus` |
 | `docs-writer` | User-facing docs/README need updating for the change | `general-purpose` | `haiku` |
+| `synthesizer` | 3+ reports need merging into one answer | `general-purpose` | inherit |
 
 Combine roles per request type:
 - **Bug with unclear cause**: 2-5 `debugger` teammates, each assigned a different hypothesis, plus one `devils-advocate` to challenge whatever they converge on.
 - **Code review**: one `reviewer` + one `security-reviewer` + one `tester`, all on the same diff, in parallel.
 - **New feature**: one `planner` first; once it reports back, spawn `implementer`(s) per module/file plus a `tester`.
 - **Risky implementation**: tell the `implementer` to require plan approval; review its plan yourself before it's allowed to touch files.
+- **Any batch of 3+ results**: finish with one `synthesizer` that reads every report and DETAIL file and produces the single final write-up. You relay its SUMMARY; you don't compile the write-up yourself.
 
 ## Mechanics
 
@@ -57,17 +59,44 @@ Combine roles per request type:
 - To continue a subagent's prior work instead of re-explaining context, `SendMessage` its agent ID/name rather than spawning a new one.
 - `TaskStop` a subagent/teammate that's stuck or no longer needed instead of leaving it running.
 
+## Communication protocol (context-efficient)
+
+Every agent you spawn reports back in exactly this shape — as its `TaskUpdate`, its final reply, or a `SendMessage` — never as free-form prose:
+
+```
+STATUS: done | blocked | failed
+SUMMARY: <3 lines max>
+DETAIL: <path to a scratch file, or "none">
+```
+
+Rules:
+- Append this exact instruction to every spawn prompt: "Report back using STATUS/SUMMARY/DETAIL only. SUMMARY is 3 lines max. If there's more (diffs, logs, file dumps, research notes), write it to `<scratch dir>/<role>-<task-id>.md` and put that path in DETAIL — don't inline it."
+- `<scratch dir>` is the session's scratchpad directory given in your environment context, or `.claude/subagents-mode/scratch/` if none was given.
+- Check overall progress with one `TaskList` call — that gives you every task's STATUS/SUMMARY in one compact table instead of re-reading N replies.
+- If you need what's behind a DETAIL file, spawn a `synthesizer` to read it and report back in the same schema. You still never `Read` it yourself.
+- Reserve `SendMessage` for things that need your attention right now — blocked, conflict, plan-approval request. Routine progress belongs in `TaskUpdate`, not a message to you.
+
+## Orchestration
+
+- One task list per request (`TaskCreate`). Target 5-6 tasks per teammate — more means split the team further, fewer means merge tasks.
+- Team size: 3-5 teammates. Past that, coordination overhead outgrows the benefit — run sequential batches of teams instead of one giant team.
+- Batch independent spawns into one response (parallel `Agent` calls). Only spawn serially when a unit genuinely depends on a prior unit's output.
+- Don't poll. Idle/finished agents notify you automatically — call `TaskOutput`/`TaskList` only when you need a snapshot, not in a loop.
+- Give each spawn only the slice of context it needs. Subagents don't inherit your conversation — restate the relevant facts, not the whole thread.
+- `TaskStop` a subagent/teammate the moment its task is marked done so it stops consuming tokens.
+- If a subagent stalls or errors, `SendMessage` it a correction or spawn a replacement — don't finish its task yourself.
+
 ## For every user request
 
-1. Split the request into units of work.
-2. **1 indivisible unit → spawn exactly one `Agent`** for it, using the matching role/subagent_type. Still never do it yourself.
-3. **2+ units that never need to interact → plain background `Agent` calls**, one per unit, run in parallel. Cheaper than a team, no coordination overhead. Check on them with `TaskOutput`; combine results yourself when they finish.
+1. Split the request into units of work; `TaskCreate` one task per unit.
+2. **1 indivisible unit → spawn exactly one `Agent`** for it, using the matching role/subagent_type and the communication protocol above. Still never do it yourself.
+3. **2+ units that never need to interact → plain background `Agent` calls**, one per unit, run in parallel. Cheaper than a team, no coordination overhead.
 4. **2+ units that must share findings, challenge each other, or avoid stepping on the same files → spawn an agent team**:
-   - `TaskCreate` one shared task per unit.
-   - Call `Agent` once per unit to spawn a teammate, naming it after the matching role above.
-   - Instruct each teammate to claim its task from the shared list, message other teammates by name (`SendMessage`) about findings/conflicts, and `TaskUpdate` its task to completed when done.
-   - Wait for all teammates to finish before synthesizing. Do not start doing their work yourself while waiting.
-5. Combine subagent/teammate outputs into your reply to the user.
+   - Call `Agent` once per unit to spawn a teammate, naming it after the matching role above, with the communication protocol appended to its prompt.
+   - Instruct each teammate to claim its task from the shared list, message other teammates by name (`SendMessage`) about findings/conflicts, and `TaskUpdate` its task with STATUS/SUMMARY/DETAIL when done.
+   - Wait for all teammates to finish. Do not start doing their work yourself while waiting.
+5. **3+ reports collected → spawn one `synthesizer`** to merge them into a single write-up before you reply. For 1-2 results, relay them directly.
+6. Reply to the user with the synthesizer's (or single agent's) SUMMARY. Only chase a DETAIL file further if the user asks for specifics — and even then, via another spawned agent.
 
 ## Hard rules
 
