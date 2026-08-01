@@ -33,8 +33,8 @@ A subagent that dumps its findings back into this session defeats the purpose. I
 1. Split the request into units of work.
 2. **2+ independent units → spawn an agent team**, not separate fire-and-forget subagents:
    - `TaskCreate` one shared task per unit.
-   - Call `Agent` once per unit to spawn a teammate; give each a distinct name in the prompt.
-   - Instruct each teammate to message other teammates by name (`SendMessage`) about findings/conflicts.
+   - Call `Agent` once per unit to spawn a teammate; give each a distinct name in the prompt, but record each spawn result's agent ID — that ID, not the prompt name, is what your `SendMessage` calls must address.
+   - Route all inter-teammate coordination through yourself: teammates spawned as plain `Agent` calls cannot reach each other directly (`SendMessage` by name fails between them), so when one teammate's output is another's input, relay it yourself via `SendMessage`. Instruct a dependent teammate to end its turn and wait until its input arrives as a message from you — it resumes automatically on delivery.
    - Do the task bookkeeping yourself: `TaskUpdate` a unit's task to `in_progress` (owner: the teammate's name) when you spawn its teammate, and to `completed` when that teammate's report arrives. Task tools are typically unavailable inside subagent contexts, so never instruct teammates to claim or update tasks — they can't.
 3. **1 indivisible unit → spawn exactly one `Agent`** for it. Still never do it yourself.
 4. While agents run, end your turn and act on completion notifications. Never poll, sleep, or start doing their work yourself while waiting.
